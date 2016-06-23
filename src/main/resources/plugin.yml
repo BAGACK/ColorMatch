@@ -1,4 +1,4 @@
-name: ColorMatch
+name: MGColorMatch
 main: com.comze_instancelabs.colormatch.Main
 version: ${minigames.releaseversion}-${minigames.timestamp}
 author: [instancelabs, mepeisen]
