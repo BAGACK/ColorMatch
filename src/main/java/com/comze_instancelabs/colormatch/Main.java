@@ -277,25 +277,25 @@ public class Main extends JavaPlugin implements Listener {
 		winner_announcement = getConfig().getBoolean("config.winner_announcement");
 		bling_sounds = getConfig().getBoolean("config.bling_sounds");
 
-		saved_arena = getConfig().getString("strings.saved.arena").replaceAll("&", "�");
-		saved_lobby = getConfig().getString("strings.saved.lobby").replaceAll("&", "�");
-		saved_setup = getConfig().getString("strings.saved.setup").replaceAll("&", "�");
-		saved_mainlobby = "�aSuccessfully saved main lobby";
-		not_in_arena = getConfig().getString("strings.not_in_arena").replaceAll("&", "�");
-		reloaded = getConfig().getString("strings.config_reloaded").replaceAll("&", "�");
-		arena_ingame = getConfig().getString("strings.arena_is_ingame").replaceAll("&", "�");
-		arena_invalid = getConfig().getString("strings.arena_invalid").replaceAll("&", "�");
-		arena_invalid_sign = getConfig().getString("strings.arena_invalid_sign").replaceAll("&", "�");
-		you_fell = getConfig().getString("strings.you_fell").replaceAll("&", "�");
-		arena_invalid_component = getConfig().getString("strings.arena_invalid_component").replace("&", "�");
-		you_won = getConfig().getString("strings.you_won").replaceAll("&", "�");
-		starting_in = getConfig().getString("strings.starting_in").replaceAll("&", "�");
-		starting_in2 = getConfig().getString("strings.starting_in2").replaceAll("&", "�");
-		arena_full = getConfig().getString("strings.arena_full").replaceAll("&", "�");
-		starting = getConfig().getString("strings.starting_announcement").replaceAll("&", "�");
-		started = getConfig().getString("strings.started_announcement").replaceAll("&", "�");
-		removed_arena = getConfig().getString("strings.removed_arena").replaceAll("&", "�");
-		winner_an = getConfig().getString("strings.winner_announcement").replaceAll("&", "�");
+		saved_arena = getConfig().getString("strings.saved.arena").replaceAll("&", "§");
+		saved_lobby = getConfig().getString("strings.saved.lobby").replaceAll("&", "§");
+		saved_setup = getConfig().getString("strings.saved.setup").replaceAll("&", "§");
+		saved_mainlobby = "§aSuccessfully saved main lobby";
+		not_in_arena = getConfig().getString("strings.not_in_arena").replaceAll("&", "§");
+		reloaded = getConfig().getString("strings.config_reloaded").replaceAll("&", "§");
+		arena_ingame = getConfig().getString("strings.arena_is_ingame").replaceAll("&", "§");
+		arena_invalid = getConfig().getString("strings.arena_invalid").replaceAll("&", "§");
+		arena_invalid_sign = getConfig().getString("strings.arena_invalid_sign").replaceAll("&", "§");
+		you_fell = getConfig().getString("strings.you_fell").replaceAll("&", "§");
+		arena_invalid_component = getConfig().getString("strings.arena_invalid_component").replace("&", "§");
+		you_won = getConfig().getString("strings.you_won").replaceAll("&", "§");
+		starting_in = getConfig().getString("strings.starting_in").replaceAll("&", "§");
+		starting_in2 = getConfig().getString("strings.starting_in2").replaceAll("&", "§");
+		arena_full = getConfig().getString("strings.arena_full").replaceAll("&", "§");
+		starting = getConfig().getString("strings.starting_announcement").replaceAll("&", "§");
+		started = getConfig().getString("strings.started_announcement").replaceAll("&", "§");
+		removed_arena = getConfig().getString("strings.removed_arena").replaceAll("&", "§");
+		winner_an = getConfig().getString("strings.winner_announcement").replaceAll("&", "§");
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -319,7 +319,7 @@ public class Main extends JavaPlugin implements Listener {
 						if (sender.hasPermission("colormatch.setup")) {
 							String arenaname = args[1];
 							if (isValidArena(arenaname)) {
-								sender.sendMessage("�cRemoving " + arenaname + ". This will �6lag �ca little bit.");
+								sender.sendMessage("§cRemoving " + arenaname + ". This will §6lag §ca little bit.");
 								if (isArenax32(arenaname)) {
 									this.removeArenax32(getSpawn(arenaname), this, arenaname);
 								} else {
@@ -342,7 +342,7 @@ public class Main extends JavaPlugin implements Listener {
 				 * else if (action.equalsIgnoreCase("setspawn")) { if (args.length > 1) { Player p = (Player) sender; String arenaname = args[1];
 				 * getConfig().set(arenaname + ".spawn.world", p.getWorld().getName()); getConfig().set(arenaname + ".spawn.loc.x",
 				 * p.getLocation().getBlockX()); getConfig().set(arenaname + ".spawn.loc.y", p.getLocation().getBlockY()); getConfig().set(arenaname +
-				 * ".spawn.loc.z", p.getLocation().getBlockZ()); this.saveConfig(); sender.sendMessage("�2Successfully saved spawn."); } }
+				 * ".spawn.loc.z", p.getLocation().getBlockZ()); this.saveConfig(); sender.sendMessage("§2Successfully saved spawn."); } }
 				 */else if (action.equalsIgnoreCase("setlobby")) {
 					if (args.length > 1) {
 						if (sender.hasPermission("colormatch.setup")) {
@@ -483,16 +483,16 @@ public class Main extends JavaPlugin implements Listener {
 							String playercount = args[2];
 							if (!isNumeric(playercount)) {
 								playercount = Integer.toString(default_max_players);
-								sender.sendMessage("�cPlayercount is invalid. Setting to default value.");
+								sender.sendMessage("§cPlayercount is invalid. Setting to default value.");
 							}
 							if (!getConfig().isSet(arena)) {
-								sender.sendMessage("�cCould not find this arena.");
+								sender.sendMessage("§cCould not find this arena.");
 								return true;
 							}
 							this.setArenaMaxPlayers(arena, Integer.parseInt(playercount));
-							sender.sendMessage("�eSuccessfully set!");
+							sender.sendMessage("§eSuccessfully set!");
 						} else {
-							sender.sendMessage("�cUsage: /cm setmaxplayers [arena] [count].");
+							sender.sendMessage("§cUsage: /cm setmaxplayers [arena] [count].");
 						}
 					}
 				} else if (action.equalsIgnoreCase("setminplayers")) {
@@ -502,16 +502,16 @@ public class Main extends JavaPlugin implements Listener {
 							String playercount = args[2];
 							if (!isNumeric(playercount)) {
 								playercount = Integer.toString(default_min_players);
-								sender.sendMessage("�cPlayercount is invalid. Setting to default value.");
+								sender.sendMessage("§cPlayercount is invalid. Setting to default value.");
 							}
 							if (!getConfig().isSet(arena)) {
-								sender.sendMessage("�cCould not find this arena.");
+								sender.sendMessage("§cCould not find this arena.");
 								return true;
 							}
 							this.setArenaMinPlayers(arena, Integer.parseInt(playercount));
-							sender.sendMessage("�eSuccessfully set!");
+							sender.sendMessage("§eSuccessfully set!");
 						} else {
-							sender.sendMessage("�cUsage: /cm setminplayers [arena] [count].");
+							sender.sendMessage("§cUsage: /cm setminplayers [arena] [count].");
 						}
 					}
 				} else if (action.equalsIgnoreCase("setdifficulty")) {
@@ -521,16 +521,16 @@ public class Main extends JavaPlugin implements Listener {
 							String difficulty = args[2];
 							if (!isNumeric(difficulty)) {
 								difficulty = "1";
-								sender.sendMessage("�cDifficulty is invalid. Possible difficulties: 0, 1, 2.");
+								sender.sendMessage("§cDifficulty is invalid. Possible difficulties: 0, 1, 2.");
 							}
 							if (!getConfig().isSet(arena)) {
-								sender.sendMessage("�cCould not find this arena.");
+								sender.sendMessage("§cCould not find this arena.");
 								return true;
 							}
 							this.setArenaDifficulty(arena, Integer.parseInt(difficulty));
-							sender.sendMessage("�eSuccessfully set!");
+							sender.sendMessage("§eSuccessfully set!");
 						} else {
-							sender.sendMessage("�cUsage: /cm setdifficulty [arena] [difficulty]. Difficulty can be 0, 1 or 2.");
+							sender.sendMessage("§cUsage: /cm setdifficulty [arena] [difficulty]. Difficulty can be 0, 1 or 2.");
 						}
 					}
 				} else if (action.equalsIgnoreCase("join")) {
@@ -543,7 +543,7 @@ public class Main extends JavaPlugin implements Listener {
 								getLogger().warning("No sign found for arena " + args[1] + ". May lead to errors.");
 							}
 							if (s != null) {
-								if (s.getLine(1).equalsIgnoreCase("�2[join]")) {
+								if (s.getLine(1).equalsIgnoreCase("§2[join]")) {
 									joinLobby((Player) sender, args[1]);
 								} else {
 									sender.sendMessage(arena_ingame);
@@ -569,7 +569,7 @@ public class Main extends JavaPlugin implements Listener {
 								}
 							}
 							if (count < 1) {
-								sender.sendMessage("�cNoone is in this arena.");
+								sender.sendMessage("§cNoone is in this arena.");
 								return true;
 							}
 							if (!ingame.get(arena)) {
@@ -622,32 +622,32 @@ public class Main extends JavaPlugin implements Listener {
 							if (aclasses.containsKey(args[1])) {
 								if (args[1].equalsIgnoreCase("default")) {
 									this.setClass(args[1], p.getName());
-									sender.sendMessage("�aKit successfully set!");
+									sender.sendMessage("§aKit successfully set!");
 									return true;
 								}
 								if (p.hasPermission("colormatch.kit." + args[1])) {
 									this.setClass(args[1], p.getName());
-									sender.sendMessage("�aKit successfully set!");
+									sender.sendMessage("§aKit successfully set!");
 								}
 							} else {
 								String all = "  ";
 								for (String class_ : aclasses.keySet()) {
 									all += class_ + ", ";
 								}
-								sender.sendMessage("�cThis is not a valid kit. Possible ones:�3" + all.substring(0, all.length() - 2));
+								sender.sendMessage("§cThis is not a valid kit. Possible ones:§3" + all.substring(0, all.length() - 2));
 							}
 						} else {
-							sender.sendMessage("�cYou are not in an arena right now.");
+							sender.sendMessage("§cYou are not in an arena right now.");
 						}
 					} else {
-						sender.sendMessage("�cUsage: �a/cm changekit [name].");
+						sender.sendMessage("§cUsage: §a/cm changekit [name].");
 					}
 				} else if (action.equalsIgnoreCase("kitgui")) {
 					Player p = (Player) sender;
 					if (arenap.containsKey(p)) {
 						openGUI(this, p.getName());
 					} else {
-						sender.sendMessage("�cYou are not in an arena right now.");
+						sender.sendMessage("§cYou are not in an arena right now.");
 					}
 				} else if (action.equalsIgnoreCase("reload")) {
 					if (sender.hasPermission("colormatch.reload")) {
@@ -657,34 +657,34 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				} else if (action.equalsIgnoreCase("list")) {
 					if (sender.hasPermission("colormatch.list")) {
-						sender.sendMessage("�6-= Arenas =-");
+						sender.sendMessage("§6-= Arenas =-");
 						for (String arena : getConfig().getKeys(false)) {
 							if (!arena.equalsIgnoreCase("mainlobby") && !arena.equalsIgnoreCase("strings") && !arena.equalsIgnoreCase("config") && !arena.equalsIgnoreCase("leftplayers") && !arena.equalsIgnoreCase("ingamearenas")) {
-								sender.sendMessage("�2" + arena);
+								sender.sendMessage("§2" + arena);
 							}
 						}
 					}
 				} else {
-					sender.sendMessage("�6-= ColorMatch �2help: �6=-");
-					sender.sendMessage("�2To �6setup the main lobby �2, type in �c/cm setmainlobby");
-					sender.sendMessage("�2To �6setup �2a new arena, type in the following commands:");
-					sender.sendMessage("�2/cm createarena [name]");
-					sender.sendMessage("�2/cm setlobby [name] �6 - for the waiting lobby");
-					sender.sendMessage("�2/cm setup [name]");
+					sender.sendMessage("§6-= ColorMatch §2help: §6=-");
+					sender.sendMessage("§2To §6setup the main lobby §2, type in §c/cm setmainlobby");
+					sender.sendMessage("§2To §6setup §2a new arena, type in the following commands:");
+					sender.sendMessage("§2/cm createarena [name]");
+					sender.sendMessage("§2/cm setlobby [name] §6 - for the waiting lobby");
+					sender.sendMessage("§2/cm setup [name]");
 					sender.sendMessage("");
-					sender.sendMessage("�2You can join with �c/cm join [name] �2and leave with �c/cm leave�2.");
-					sender.sendMessage("�2You can force an arena to start with �c/cm start [name]�2.");
+					sender.sendMessage("§2You can join with §c/cm join [name] §2and leave with §c/cm leave§2.");
+					sender.sendMessage("§2You can force an arena to start with §c/cm start [name]§2.");
 				}
 			} else {
-				sender.sendMessage("�6-= ColorMatch �2help: �6=-");
-				sender.sendMessage("�2To �6setup the main lobby �2, type in �c/cm setmainlobby");
-				sender.sendMessage("�2To �6setup �2a new arena, type in the following commands:");
-				sender.sendMessage("�2/cm createarena [name]");
-				sender.sendMessage("�2/cm setlobby [name] �6 - for the waiting lobby");
-				sender.sendMessage("�2/cm setup [name]");
+				sender.sendMessage("§6-= ColorMatch §2help: §6=-");
+				sender.sendMessage("§2To §6setup the main lobby §2, type in §c/cm setmainlobby");
+				sender.sendMessage("§2To §6setup §2a new arena, type in the following commands:");
+				sender.sendMessage("§2/cm createarena [name]");
+				sender.sendMessage("§2/cm setlobby [name] §6 - for the waiting lobby");
+				sender.sendMessage("§2/cm setup [name]");
 				sender.sendMessage("");
-				sender.sendMessage("�2You can join with �c/cm join [name] �2and leave with �c/cm leave�2.");
-				sender.sendMessage("�2You can force an arena to start with �c/cm start [name]�2.");
+				sender.sendMessage("§2You can join with §c/cm join [name] §2and leave with §c/cm leave§2.");
+				sender.sendMessage("§2You can force an arena to start with §c/cm start [name]§2.");
 			}
 			return true;
 		}
@@ -708,7 +708,7 @@ public class Main extends JavaPlugin implements Listener {
 			try {
 				Sign s = this.getSignFromArena(arena);
 				if (s != null) {
-					s.setLine(1, "�2[Join]");
+					s.setLine(1, "§2[Join]");
 					s.setLine(3, Integer.toString(count - 1) + "/" + Integer.toString(getArenaMaxPlayers(arena)));
 					s.update();
 				}
@@ -863,7 +863,7 @@ public class Main extends JavaPlugin implements Listener {
 			if (event.getClickedBlock().getType() == Material.SIGN_POST || event.getClickedBlock().getType() == Material.WALL_SIGN) {
 				final Sign s = (Sign) event.getClickedBlock().getState();
 				if (s.getLine(0).toLowerCase().contains("colormatch")) {
-					if (s.getLine(1).equalsIgnoreCase("�2[join]")) {
+					if (s.getLine(1).equalsIgnoreCase("§2[join]")) {
 						if (isValidArena(s.getLine(2))) {
 							joinLobby(event.getPlayer(), s.getLine(2));
 						} else {
@@ -889,7 +889,7 @@ public class Main extends JavaPlugin implements Listener {
 						getConfig().set(arena + ".sign.loc.y", event.getBlock().getLocation().getBlockY());
 						getConfig().set(arena + ".sign.loc.z", event.getBlock().getLocation().getBlockZ());
 						this.saveConfig();
-						p.sendMessage("�2Successfully created arena sign.");
+						p.sendMessage("§2Successfully created arena sign.");
 					} else {
 						p.sendMessage(arena_invalid_component);
 						event.getBlock().breakNaturally();
@@ -906,7 +906,7 @@ public class Main extends JavaPlugin implements Listener {
 	public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event) {
 		if (arenap.containsKey(event.getPlayer()) && !event.getPlayer().isOp()) {
 			if (!event.getMessage().startsWith("/cm") && !event.getMessage().startsWith("/colormatch")) {
-				event.getPlayer().sendMessage("�cPlease use �6/cm leave �cto leave this minigame.");
+				event.getPlayer().sendMessage("§cPlease use §6/cm leave §cto leave this minigame.");
 				event.setCancelled(true);
 				return;
 			}
@@ -1344,7 +1344,7 @@ public class Main extends JavaPlugin implements Listener {
 						public void run() {
 							Sign s = getSignFromArena(arena);
 							if (s != null) {
-								s.setLine(1, "�4[Ingame]");
+								s.setLine(1, "§4[Ingame]");
 								s.update();
 							}
 						}
@@ -1665,7 +1665,7 @@ public class Main extends JavaPlugin implements Listener {
 
 				Sign s = getSignFromArena(arena);
 				if (s != null) {
-					s.setLine(1, "�2[Join]");
+					s.setLine(1, "§2[Join]");
 					s.setLine(3, "0/" + Integer.toString(getArenaMaxPlayers(arena)));
 					s.update();
 				}
@@ -1784,14 +1784,14 @@ public class Main extends JavaPlugin implements Listener {
 						Objective objective = board.registerNewObjective("test", "dummy");
 						objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-						objective.setDisplayName("�cC�3o�dl�5o�6r�1M�aa�2t�4c�eh!"); // <- ColorMatch
+						objective.setDisplayName("§cC§3o§dl§5o§6r§1M§aa§2t§4c§eh!"); // <- ColorMatch
 
 						try {
-							objective.getScore(Bukkit.getOfflinePlayer(" �8-  ")).setScore(5);
-							objective.getScore(Bukkit.getOfflinePlayer("�aArena")).setScore(4);
-							objective.getScore(Bukkit.getOfflinePlayer("�d" + arena)).setScore(3);
-							objective.getScore(Bukkit.getOfflinePlayer(" �8- ")).setScore(2);
-							objective.getScore(Bukkit.getOfflinePlayer("�aPlayers Left")).setScore(1);
+							objective.getScore(Bukkit.getOfflinePlayer(" §8-  ")).setScore(5);
+							objective.getScore(Bukkit.getOfflinePlayer("§aArena")).setScore(4);
+							objective.getScore(Bukkit.getOfflinePlayer("§d" + arena)).setScore(3);
+							objective.getScore(Bukkit.getOfflinePlayer(" §8- ")).setScore(2);
+							objective.getScore(Bukkit.getOfflinePlayer("§aPlayers Left")).setScore(1);
 							objective.getScore(Bukkit.getOfflinePlayer(Integer.toString(count - lostcount) + "/" + Integer.toString(count))).setScore(0);
 						} catch (Exception e) {
 							//
@@ -2013,9 +2013,9 @@ public class Main extends JavaPlugin implements Listener {
 		int c = 0;
 		for (String ac : aclasses.keySet()) {
 			if (getConfig().isSet("config.kits." + ac + ".gui_item_id")) {
-				iconm.setOption(c, new ItemStack(Material.getMaterial(getConfig().getInt("config.kits." + ac + ".gui_item_id"))), ac, m.getConfig().getString("config.kits." + ac + ".lore").replaceAll("&", "�"));
+				iconm.setOption(c, new ItemStack(Material.getMaterial(getConfig().getInt("config.kits." + ac + ".gui_item_id"))), ac, m.getConfig().getString("config.kits." + ac + ".lore").replaceAll("&", "§"));
 			} else {
-				iconm.setOption(c, new ItemStack(Material.SLIME_BALL), ac, m.getConfig().getString("config.kits." + ac + ".lore").replaceAll("&", "�"));
+				iconm.setOption(c, new ItemStack(Material.SLIME_BALL), ac, m.getConfig().getString("config.kits." + ac + ".lore").replaceAll("&", "§"));
 			}
 
 			c++;
