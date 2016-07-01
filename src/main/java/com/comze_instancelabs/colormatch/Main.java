@@ -880,7 +880,7 @@ public class Main extends JavaPlugin implements Listener {
 		Player p = event.getPlayer();
 		if (event.getLine(0).toLowerCase().equalsIgnoreCase("colormatch")) {
 			if (event.getPlayer().hasPermission("cm.sign") || event.getPlayer().hasPermission("colormatch.sign") || event.getPlayer().isOp()) {
-				event.setLine(0, "�6�lColorMatch");
+				event.setLine(0, "§6§lColorMatch");
 				if (!event.getLine(2).equalsIgnoreCase("")) {
 					String arena = event.getLine(2);
 					if (isValidArena(arena)) {
@@ -894,7 +894,7 @@ public class Main extends JavaPlugin implements Listener {
 						p.sendMessage(arena_invalid_component);
 						event.getBlock().breakNaturally();
 					}
-					event.setLine(1, "�2[Join]");
+					event.setLine(1, "§2[Join]");
 					event.setLine(2, arena);
 					event.setLine(3, "0/" + Integer.toString(getArenaMaxPlayers(arena)));
 				}
