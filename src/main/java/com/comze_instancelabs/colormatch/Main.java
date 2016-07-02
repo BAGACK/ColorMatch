@@ -60,6 +60,8 @@ import com.comze_instancelabs.colormatch.modes.ColorMatchGlassMode;
 import com.comze_instancelabs.colormatch.modes.ColorMatchx32;
 import com.comze_instancelabs.colormatch.modes.ColorMatchx32Clay;
 import com.comze_instancelabs.colormatch.modes.ColorMatchx32Glass;
+import com.comze_instancelabs.minigamesapi.CommandStrings;
+import com.comze_instancelabs.minigamesapi.PluginConfigStrings;
 import com.google.common.collect.Maps;
 
 public class Main extends JavaPlugin implements Listener {
@@ -142,7 +144,7 @@ public class Main extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(this, this);
 
 		getConfig().options().header("I recommend you to set auto_updating to true for possible future bugfixes. If use_economy is set to false, the winner will get the item reward.");
-		getConfig().addDefault("config.auto_updating", true);
+		getConfig().addDefault(PluginConfigStrings.AUTO_UPDATING, true);
 		getConfig().addDefault("config.rounds_per_game", 10);
 		getConfig().addDefault("config.start_countdown", 5);
 		getConfig().addDefault("config.default_max_players", 4);
@@ -203,7 +205,7 @@ public class Main extends JavaPlugin implements Listener {
 		} catch (IOException e) {
 		}
 
-		if (getConfig().getBoolean("config.auto_updating")) {
+		if (getConfig().getBoolean(PluginConfigStrings.AUTO_UPDATING)) {
 			Updater updater = new Updater(this, 71774, this.getFile(), Updater.UpdateType.DEFAULT, false);
 		}
 
@@ -302,7 +304,7 @@ public class Main extends JavaPlugin implements Listener {
 		if (cmd.getName().equalsIgnoreCase("cm") || cmd.getName().equalsIgnoreCase("colormatch")) {
 			if (args.length > 0) {
 				String action = args[0];
-				if (action.equalsIgnoreCase("createarena")) {
+				if (action.equalsIgnoreCase(CommandStrings.GAME_CREATE_ARENA)) {
 					// create arena
 					if (args.length > 1) {
 						if (sender.hasPermission("colormatch.setup")) {
@@ -313,7 +315,7 @@ public class Main extends JavaPlugin implements Listener {
 							sender.sendMessage(saved_arena);
 						}
 					}
-				} else if (action.equalsIgnoreCase("removearena")) {
+				} else if (action.equalsIgnoreCase(CommandStrings.GAME_REMOVE_ARENA)) {
 					// remove arena
 					if (args.length > 1) {
 						if (sender.hasPermission("colormatch.setup")) {
@@ -343,7 +345,7 @@ public class Main extends JavaPlugin implements Listener {
 				 * getConfig().set(arenaname + ".spawn.world", p.getWorld().getName()); getConfig().set(arenaname + ".spawn.loc.x",
 				 * p.getLocation().getBlockX()); getConfig().set(arenaname + ".spawn.loc.y", p.getLocation().getBlockY()); getConfig().set(arenaname +
 				 * ".spawn.loc.z", p.getLocation().getBlockZ()); this.saveConfig(); sender.sendMessage("§2Successfully saved spawn."); } }
-				 */else if (action.equalsIgnoreCase("setlobby")) {
+				 */else if (action.equalsIgnoreCase(CommandStrings.GAME_SET_LOBBY)) {
 					if (args.length > 1) {
 						if (sender.hasPermission("colormatch.setup")) {
 							Player p = (Player) sender;
@@ -447,7 +449,7 @@ public class Main extends JavaPlugin implements Listener {
 							cmclay.setup(p.getLocation(), this, arenaname);
 						}
 					}
-				} else if (action.equalsIgnoreCase("setmainlobby")) {
+				} else if (action.equalsIgnoreCase(CommandStrings.GAME_SET_MAINLOBBY)) {
 					if (sender.hasPermission("colormatch.setup")) {
 						Player p = (Player) sender;
 						getConfig().set("mainlobby.world", p.getWorld().getName());
@@ -457,14 +459,14 @@ public class Main extends JavaPlugin implements Listener {
 						this.saveConfig();
 						sender.sendMessage(saved_mainlobby);
 					}
-				} else if (action.equalsIgnoreCase("leave")) {
+				} else if (action.equalsIgnoreCase(CommandStrings.GAME_LEAVE)) {
 					Player p = (Player) sender;
 					if (arenap.containsKey(p)) {
 						leaveArena(p, true, false);
 					} else {
 						p.sendMessage(not_in_arena);
 					}
-				} else if (action.equalsIgnoreCase("endall")) {
+				} else if (action.equalsIgnoreCase(CommandStrings.GAME_END_ALL)) {
 					if (sender.hasPermission("colormatch.end")) {
 						for (String arena : tasks.keySet()) {
 							try {
@@ -476,7 +478,7 @@ public class Main extends JavaPlugin implements Listener {
 						ingame.clear();
 						Bukkit.getScheduler().cancelTasks(this);
 					}
-				} else if (action.equalsIgnoreCase("setmaxplayers")) {
+				} else if (action.equalsIgnoreCase(CommandStrings.GAME_SET_MAX_PLAYERS)) {
 					if (sender.hasPermission("colormatch.setup")) {
 						if (args.length > 2) {
 							String arena = args[1];
@@ -495,7 +497,7 @@ public class Main extends JavaPlugin implements Listener {
 							sender.sendMessage("§cUsage: /cm setmaxplayers [arena] [count].");
 						}
 					}
-				} else if (action.equalsIgnoreCase("setminplayers")) {
+				} else if (action.equalsIgnoreCase(CommandStrings.GAME_SET_MIN_PLAYERS)) {
 					if (sender.hasPermission("colormatch.setup")) {
 						if (args.length > 2) {
 							String arena = args[1];
@@ -533,7 +535,7 @@ public class Main extends JavaPlugin implements Listener {
 							sender.sendMessage("§cUsage: /cm setdifficulty [arena] [difficulty]. Difficulty can be 0, 1 or 2.");
 						}
 					}
-				} else if (action.equalsIgnoreCase("join")) {
+				} else if (action.equalsIgnoreCase(CommandStrings.GAME_JOIN)) {
 					if (args.length > 1) {
 						if (isValidArena(args[1])) {
 							Sign s = null;
@@ -555,7 +557,7 @@ public class Main extends JavaPlugin implements Listener {
 							sender.sendMessage(arena_invalid);
 						}
 					}
-				} else if (action.equalsIgnoreCase("start")) {
+				} else if (action.equalsIgnoreCase(CommandStrings.GAME_START)) {
 					if (args.length > 1) {
 						if (sender.hasPermission("colormatch.start")) {
 							final String arena = args[1];
@@ -601,7 +603,7 @@ public class Main extends JavaPlugin implements Listener {
 							}
 						}
 					}
-				} else if (action.equalsIgnoreCase("stop")) {
+				} else if (action.equalsIgnoreCase(CommandStrings.GAME_STOP)) {
 					if (args.length > 1) {
 						if (sender.hasPermission("colormatch.stop")) {
 							final String arena = args[1];
@@ -649,13 +651,13 @@ public class Main extends JavaPlugin implements Listener {
 					} else {
 						sender.sendMessage("§cYou are not in an arena right now.");
 					}
-				} else if (action.equalsIgnoreCase("reload")) {
+				} else if (action.equalsIgnoreCase(CommandStrings.GAME_RELOAD)) {
 					if (sender.hasPermission("colormatch.reload")) {
 						this.reloadConfig();
 						getConfigVars();
 						sender.sendMessage(reloaded);
 					}
-				} else if (action.equalsIgnoreCase("list")) {
+				} else if (action.equalsIgnoreCase(CommandStrings.GAME_LIST)) {
 					if (sender.hasPermission("colormatch.list")) {
 						sender.sendMessage("§6-= Arenas =-");
 						for (String arena : getConfig().getKeys(false)) {
