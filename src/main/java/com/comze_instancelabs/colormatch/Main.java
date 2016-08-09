@@ -61,6 +61,7 @@ import com.comze_instancelabs.colormatch.modes.ColorMatchx32;
 import com.comze_instancelabs.colormatch.modes.ColorMatchx32Clay;
 import com.comze_instancelabs.colormatch.modes.ColorMatchx32Glass;
 import com.comze_instancelabs.minigamesapi.CommandStrings;
+import com.comze_instancelabs.minigamesapi.MinigamesAPI;
 import com.comze_instancelabs.minigamesapi.PluginConfigStrings;
 import com.google.common.collect.Maps;
 
@@ -307,7 +308,7 @@ public class Main extends JavaPlugin implements Listener {
 				if (action.equalsIgnoreCase(CommandStrings.GAME_CREATE_ARENA)) {
 					// create arena
 					if (args.length > 1) {
-						if (sender.hasPermission("colormatch.setup")) {
+						if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 							String arenaname = args[1];
 							getConfig().set(arenaname + ".name", arenaname);
 							this.saveConfig();
@@ -318,7 +319,7 @@ public class Main extends JavaPlugin implements Listener {
 				} else if (action.equalsIgnoreCase(CommandStrings.GAME_REMOVE_ARENA)) {
 					// remove arena
 					if (args.length > 1) {
-						if (sender.hasPermission("colormatch.setup")) {
+						if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 							String arenaname = args[1];
 							if (isValidArena(arenaname)) {
 								sender.sendMessage("§cRemoving " + arenaname + ". This will §6lag §ca little bit.");
@@ -347,7 +348,7 @@ public class Main extends JavaPlugin implements Listener {
 				 * ".spawn.loc.z", p.getLocation().getBlockZ()); this.saveConfig(); sender.sendMessage("§2Successfully saved spawn."); } }
 				 */else if (action.equalsIgnoreCase(CommandStrings.GAME_SET_LOBBY)) {
 					if (args.length > 1) {
-						if (sender.hasPermission("colormatch.setup")) {
+						if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 							Player p = (Player) sender;
 							String arenaname = args[1];
 							getConfig().set(arenaname + ".lobby.world", p.getWorld().getName());
@@ -360,7 +361,7 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				} else if (action.equalsIgnoreCase("setup")) {
 					if (args.length > 1) {
-						if (sender.hasPermission("colormatch.setup")) {
+						if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 							Player p = (Player) sender;
 							String arenaname = args[1];
 							getConfig().set(arenaname + ".spawn.world", p.getWorld().getName());
@@ -374,7 +375,7 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				} else if (action.equalsIgnoreCase("setupsmall")) {
 					if (args.length > 1) {
-						if (sender.hasPermission("colormatch.setup")) {
+						if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 							Player p = (Player) sender;
 							String arenaname = args[1];
 							getConfig().set(arenaname + ".spawn.world", p.getWorld().getName());
@@ -389,7 +390,7 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				} else if (action.equalsIgnoreCase("setupsmallclay")) {
 					if (args.length > 1) {
-						if (sender.hasPermission("colormatch.setup")) {
+						if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 							Player p = (Player) sender;
 							String arenaname = args[1];
 							getConfig().set(arenaname + ".spawn.world", p.getWorld().getName());
@@ -404,7 +405,7 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				} else if (action.equalsIgnoreCase("setupsmallglass")) {
 					if (args.length > 1) {
-						if (sender.hasPermission("colormatch.setup")) {
+						if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 							Player p = (Player) sender;
 							String arenaname = args[1];
 							getConfig().set(arenaname + ".spawn.world", p.getWorld().getName());
@@ -419,7 +420,7 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				} else if (action.equalsIgnoreCase("setupglass")) {
 					if (args.length > 1) {
-						if (sender.hasPermission("colormatch.setup")) {
+						if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 							Player p = (Player) sender;
 							String arenaname = args[1];
 							getConfig().set(arenaname + ".spawn.world", p.getWorld().getName());
@@ -435,7 +436,7 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				} else if (action.equalsIgnoreCase("setupclay")) {
 					if (args.length > 1) {
-						if (sender.hasPermission("colormatch.setup")) {
+						if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 							Player p = (Player) sender;
 							String arenaname = args[1];
 							getConfig().set(arenaname + ".spawn.world", p.getWorld().getName());
@@ -450,7 +451,7 @@ public class Main extends JavaPlugin implements Listener {
 						}
 					}
 				} else if (action.equalsIgnoreCase(CommandStrings.GAME_SET_MAINLOBBY)) {
-					if (sender.hasPermission("colormatch.setup")) {
+					if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 						Player p = (Player) sender;
 						getConfig().set("mainlobby.world", p.getWorld().getName());
 						getConfig().set("mainlobby.loc.x", p.getLocation().getBlockX());
@@ -467,7 +468,7 @@ public class Main extends JavaPlugin implements Listener {
 						p.sendMessage(not_in_arena);
 					}
 				} else if (action.equalsIgnoreCase(CommandStrings.GAME_END_ALL)) {
-					if (sender.hasPermission("colormatch.end")) {
+					if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".end")) {
 						for (String arena : tasks.keySet()) {
 							try {
 								tasks.get(arena).cancel();
@@ -479,7 +480,7 @@ public class Main extends JavaPlugin implements Listener {
 						Bukkit.getScheduler().cancelTasks(this);
 					}
 				} else if (action.equalsIgnoreCase(CommandStrings.GAME_SET_MAX_PLAYERS)) {
-					if (sender.hasPermission("colormatch.setup")) {
+					if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 						if (args.length > 2) {
 							String arena = args[1];
 							String playercount = args[2];
@@ -498,7 +499,7 @@ public class Main extends JavaPlugin implements Listener {
 						}
 					}
 				} else if (action.equalsIgnoreCase(CommandStrings.GAME_SET_MIN_PLAYERS)) {
-					if (sender.hasPermission("colormatch.setup")) {
+					if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 						if (args.length > 2) {
 							String arena = args[1];
 							String playercount = args[2];
@@ -517,7 +518,7 @@ public class Main extends JavaPlugin implements Listener {
 						}
 					}
 				} else if (action.equalsIgnoreCase("setdifficulty")) {
-					if (sender.hasPermission("colormatch.setup")) {
+					if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".setup")) {
 						if (args.length > 2) {
 							String arena = args[1];
 							String difficulty = args[2];
@@ -559,7 +560,7 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				} else if (action.equalsIgnoreCase(CommandStrings.GAME_START)) {
 					if (args.length > 1) {
-						if (sender.hasPermission("colormatch.start")) {
+						if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".start")) {
 							final String arena = args[1];
 							if (!ingame.containsKey(arena)) {
 								ingame.put(arena, false);
@@ -605,7 +606,7 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				} else if (action.equalsIgnoreCase(CommandStrings.GAME_STOP)) {
 					if (args.length > 1) {
-						if (sender.hasPermission("colormatch.stop")) {
+						if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".stop")) {
 							final String arena = args[1];
 							if (!ingame.containsKey(arena)) {
 								return true;
@@ -627,7 +628,7 @@ public class Main extends JavaPlugin implements Listener {
 									sender.sendMessage("§aKit successfully set!");
 									return true;
 								}
-								if (p.hasPermission("colormatch.kit." + args[1])) {
+								if (p.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".kit." + args[1])) {
 									this.setClass(args[1], p.getName());
 									sender.sendMessage("§aKit successfully set!");
 								}
@@ -652,13 +653,13 @@ public class Main extends JavaPlugin implements Listener {
 						sender.sendMessage("§cYou are not in an arena right now.");
 					}
 				} else if (action.equalsIgnoreCase(CommandStrings.GAME_RELOAD)) {
-					if (sender.hasPermission("colormatch.reload")) {
+					if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".reload")) {
 						this.reloadConfig();
 						getConfigVars();
 						sender.sendMessage(reloaded);
 					}
 				} else if (action.equalsIgnoreCase(CommandStrings.GAME_LIST)) {
-					if (sender.hasPermission("colormatch.list")) {
+					if (sender.hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".list")) {
 						sender.sendMessage("§6-= Arenas =-");
 						for (String arena : getConfig().getKeys(false)) {
 							if (!arena.equalsIgnoreCase("mainlobby") && !arena.equalsIgnoreCase("strings") && !arena.equalsIgnoreCase("config") && !arena.equalsIgnoreCase("leftplayers") && !arena.equalsIgnoreCase("ingamearenas")) {
@@ -881,7 +882,7 @@ public class Main extends JavaPlugin implements Listener {
 	public void onSignChange(SignChangeEvent event) {
 		Player p = event.getPlayer();
 		if (event.getLine(0).toLowerCase().equalsIgnoreCase("colormatch")) {
-			if (event.getPlayer().hasPermission("cm.sign") || event.getPlayer().hasPermission("colormatch.sign") || event.getPlayer().isOp()) {
+			if (event.getPlayer().hasPermission(MinigamesAPI.getAPI().getPermissionGamePrefix("colormatch") + ".sign") || event.getPlayer().isOp()) {
 				event.setLine(0, "§6§lColorMatch");
 				if (!event.getLine(2).equalsIgnoreCase("")) {
 					String arena = event.getLine(2);
