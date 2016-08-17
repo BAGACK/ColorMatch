@@ -1,11 +1,14 @@
 package com.comze_instancelabs.colormatch.modes;
 
+import java.util.logging.Level;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
 import com.comze_instancelabs.colormatch.Main;
+import com.comze_instancelabs.minigamesapi.MinigamesAPI;
 
 public class ColorMatchx32Clay {
 	
@@ -121,7 +124,7 @@ public class ColorMatchx32Clay {
 			// mbu.notifyClients();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			MinigamesAPI.getAPI().getLogger().log(Level.WARNING, "exception", e);
 		}
 	}
 

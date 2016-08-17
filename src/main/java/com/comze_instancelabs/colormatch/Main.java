@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.logging.Level;
 
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
@@ -223,7 +224,7 @@ public class Main extends JavaPlugin implements Listener {
 		if (getConfig().isSet("ingamearenas")) {
 			ArrayList<String> arenas = new ArrayList<String>(getConfig().getConfigurationSection("ingamearenas.").getKeys(false));
 			for (String arena : arenas) {
-				System.out.println("Resetting " + arena);
+				this.getLogger().fine("Resetting " + arena);
 				stop(null, arena);
 				getConfig().set("ingamearenas." + arena, null);
 				this.saveConfig();
@@ -583,7 +584,7 @@ public class Main extends JavaPlugin implements Listener {
 										Bukkit.getScheduler().runTaskLater(this, new Runnable() {
 											public void run() {
 												if (getSpawnForPlayer(arena) == null) {
-													System.out.println("Couldn't find the spawn, not teleporting.");
+													Main.this.getLogger().fine("Couldn't find the spawn, not teleporting.");
 													for (Player p : Bukkit.getOnlinePlayers()) {
 														if (p.isOp()) {
 															p.sendMessage(ChatColor.RED + "Couldn't find the spawn for ColorMatch, not teleporting.");
@@ -812,7 +813,7 @@ public class Main extends JavaPlugin implements Listener {
 								p.teleport(new Location(p.getWorld(), p.getLocation().getBlockX(), spectatorlobby.getBlockY(), p.getLocation().getBlockZ(), b, c));
 								updateScoreboard(arena);
 							} catch (Exception e) {
-								e.printStackTrace();
+								MinigamesAPI.getAPI().getLogger().log(Level.WARNING, "exception", e);
 							}
 						}
 					}, 5);
@@ -837,7 +838,7 @@ public class Main extends JavaPlugin implements Listener {
 							p__.setAllowFlight(true);
 							p__.setFlying(true);
 						} catch (Exception e) {
-							e.printStackTrace();
+							MinigamesAPI.getAPI().getLogger().log(Level.WARNING, "exception", e);
 						}
 					}
 				}, 5);
@@ -1078,7 +1079,7 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			MinigamesAPI.getAPI().getLogger().log(Level.WARNING, "exception", e);
 		}
 
 	}
@@ -1509,7 +1510,7 @@ public class Main extends JavaPlugin implements Listener {
 						a_n.put(arena, a_n.get(arena) + 4);
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					MinigamesAPI.getAPI().getLogger().log(Level.WARNING, "exception", e);
 				}
 
 			}
@@ -1593,7 +1594,7 @@ public class Main extends JavaPlugin implements Listener {
 			// mbu.notifyClients();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			MinigamesAPI.getAPI().getLogger().log(Level.WARNING, "exception", e);
 		}
 	}
 
@@ -1805,7 +1806,7 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			MinigamesAPI.getAPI().getLogger().log(Level.WARNING, "exception", e);
 		}
 	}
 
@@ -1829,7 +1830,7 @@ public class Main extends JavaPlugin implements Listener {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			MinigamesAPI.getAPI().getLogger().log(Level.WARNING, "exception", e);
 		}
 	}
 
@@ -1841,7 +1842,7 @@ public class Main extends JavaPlugin implements Listener {
 			sc.clearSlot(DisplaySlot.SIDEBAR);
 			p.setScoreboard(sc);
 		} catch (Exception e) {
-			e.printStackTrace();
+			MinigamesAPI.getAPI().getLogger().log(Level.WARNING, "exception", e);
 		}
 	}
 

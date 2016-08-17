@@ -5,12 +5,18 @@ package com.comze_instancelabs.colormatch.Util;
  *
  * This class provides the means to safely and easily update a plugin, or check to see if it is updated using dev.bukkit.org
  */
-
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Enumeration;
+import java.util.logging.Level;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -19,6 +25,8 @@ import org.bukkit.plugin.Plugin;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+
+import com.comze_instancelabs.minigamesapi.MinigamesAPI;
 
 /**
  * Check dev.bukkit.org to find updates for a given plugin, and download the updates if needed.
@@ -155,8 +163,7 @@ public class Updater {
             try {
                 updaterConfigFile.createNewFile();
             } catch (final IOException e) {
-                plugin.getLogger().severe("The updater could not create a configuration in " + updaterFile.getAbsolutePath());
-                e.printStackTrace();
+                plugin.getLogger().log(Level.SEVERE, "The updater could not create a configuration in " + updaterFile.getAbsolutePath(), e);
             }
         }
         this.config = YamlConfiguration.loadConfiguration(updaterConfigFile);
@@ -172,8 +179,7 @@ public class Updater {
             try {
                 this.config.save(updaterConfigFile);
             } catch (final IOException e) {
-                plugin.getLogger().severe("The updater could not save the configuration in " + updaterFile.getAbsolutePath());
-                e.printStackTrace();
+                plugin.getLogger().log(Level.SEVERE, "The updater could not save the configuration in " + updaterFile.getAbsolutePath(), e);
             }
         }
 
@@ -192,9 +198,8 @@ public class Updater {
         try {
             this.url = new URL(Updater.HOST + Updater.QUERY + id);
         } catch (final MalformedURLException e) {
-            plugin.getLogger().severe("The project ID provided for updating, " + id + " is invalid.");
+            plugin.getLogger().log(Level.SEVERE, "The project ID provided for updating, " + id + " is invalid.", e);
             this.result = UpdateResult.FAIL_BADID;
-            e.printStackTrace();
         }
 
         this.thread = new Thread(new UpdateRunnable());
@@ -250,7 +255,7 @@ public class Updater {
             try {
                 this.thread.join();
             } catch (final InterruptedException e) {
-                e.printStackTrace();
+                // silently ignore
             }
         }
     }
@@ -386,9 +391,8 @@ public class Updater {
             new File(zipPath).delete();
             fSourceZip.delete();
         } catch (final IOException ex) {
-            this.plugin.getLogger().warning("The auto-updater tried to unzip a new update file, but was unsuccessful.");
+            this.plugin.getLogger().log(Level.WARNING, "The auto-updater tried to unzip a new update file, but was unsuccessful.", ex);
             this.result = Updater.UpdateResult.FAIL_DOWNLOAD;
-            ex.printStackTrace();
         }
         new File(file).delete();
     }
@@ -506,7 +510,7 @@ public class Updater {
                 this.plugin.getLogger().warning("If you have not recently modified your configuration and this is the first time you are seeing this message, the site may be experiencing temporary downtime.");
                 this.result = UpdateResult.FAIL_DBO;
             }
-            e.printStackTrace();
+            MinigamesAPI.getAPI().getLogger().log(Level.WARNING, "exception", e);
             return false;
         }
     }
