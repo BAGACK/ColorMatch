@@ -54,8 +54,6 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
-import com.comze_instancelabs.colormatch.Util.Metrics;
-import com.comze_instancelabs.colormatch.Util.Updater;
 import com.comze_instancelabs.colormatch.modes.ColorMatchClayMode;
 import com.comze_instancelabs.colormatch.modes.ColorMatchGlassMode;
 import com.comze_instancelabs.colormatch.modes.ColorMatchx32;
@@ -200,16 +198,6 @@ public class Main extends JavaPlugin implements Listener {
 		cmglass = new ColorMatchGlassMode(this);
 		cmclay = new ColorMatchClayMode(this);
 		cmx32glass = new ColorMatchx32Glass(this);
-
-		try {
-			Metrics metrics = new Metrics(this);
-			metrics.start();
-		} catch (IOException e) {
-		}
-
-		if (getConfig().getBoolean(PluginConfigStrings.AUTO_UPDATING)) {
-			Updater updater = new Updater(this, 71774, this.getFile(), Updater.UpdateType.DEFAULT, false);
-		}
 
 		if (economy) {
 			if (!setupEconomy()) {
