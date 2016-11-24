@@ -34,7 +34,7 @@ public class ColorMatchx32 {
 
 				current = m.r.nextInt(m.colors.size());
 				// ints.add(current);
-				m.ints.add((int) m.colors.get(current).getData());
+				m.ints.add((int) m.colors.get(current).getWoolData());
 
 				for (int i_ = 0; i_ < 4; i_++) {
 					for (int j_ = 0; j_ < 4; j_++) {
@@ -42,7 +42,7 @@ public class ColorMatchx32 {
 						Block b_ = start.getWorld().getBlockAt(new Location(start.getWorld(), x_ + i_, y_, z_ + j_));
 						b_.setType(Material.GLOWSTONE);
 						b.setType(Material.WOOL);
-						b.setData(m.colors.get(current).getData());
+						b.setData(m.colors.get(current).getWoolData());
 					}
 				}
 			}
@@ -103,7 +103,7 @@ public class ColorMatchx32 {
 					// current = r.nextInt(colors.size());
 					current = m.ints.get(count);
 					if (current < 1) {
-						current = (int) m.colors.get(m.r.nextInt(m.colors.size())).getData();
+						current = (int) m.colors.get(m.r.nextInt(m.colors.size())).getWoolData();
 					}
 					count += 1;
 
@@ -137,7 +137,7 @@ public class ColorMatchx32 {
 		int x = start.getBlockX() - 16;
 		int y = start.getBlockY();
 		int z = start.getBlockZ() - 16;
-		Byte data = m.colors.get(m.a_currentw.get(arena)).getData();
+		Byte data = m.colors.get(m.a_currentw.get(arena)).getWoolData();
 
 		for (int i = 0; i < 32; i++) {
 			for (int j = 0; j < 32; j++) {

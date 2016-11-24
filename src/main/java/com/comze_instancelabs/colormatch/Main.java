@@ -1230,7 +1230,7 @@ public class Main extends JavaPlugin implements Listener {
 					// Bukkit.getLogger().info(Integer.toString(b.getLocation().getBlockX()) + " " + Integer.toString(b.getLocation().getBlockZ()) +
 					// " . " + Integer.toString(colors.get(newcurrent).getData()) + " " + Integer.toString(ints.get(ints.size() - 16)));
 
-					if (ints.get(ints.size() - 16) == colors.get(newcurrent).getData()) {
+					if (ints.get(ints.size() - 16) == colors.get(newcurrent).getWoolData()) {
 						if (newcurrent > 0) {
 							newcurrent -= 1;
 						} else {
@@ -1241,7 +1241,7 @@ public class Main extends JavaPlugin implements Listener {
 
 				current = newcurrent;
 				// ints.add(current);
-				ints.add((int) colors.get(current).getData());
+				ints.add((int) colors.get(current).getWoolData());
 
 				for (int i_ = 0; i_ < 4; i_++) {
 					for (int j_ = 0; j_ < 4; j_++) {
@@ -1249,7 +1249,7 @@ public class Main extends JavaPlugin implements Listener {
 						Block b_ = start.getWorld().getBlockAt(new Location(start.getWorld(), x_ + i_, y_, z_ + j_));
 						b_.setType(Material.GLOWSTONE);
 						b.setType(Material.WOOL);
-						b.setData(colors.get(current).getData());
+						b.setData(colors.get(current).getWoolData());
 					}
 				}
 			}
@@ -1424,11 +1424,11 @@ public class Main extends JavaPlugin implements Listener {
 								DyeColor dc = colors.get(currentw);
 								ItemStack item;
 								if (isArenaClayMode(arena) || isArenax32ClayMode(arena)) {
-									item = new ItemStack(Material.STAINED_CLAY, 1, dc.getData());
+									item = new ItemStack(Material.STAINED_CLAY, 1, dc.getWoolData());
 								} else if (isArenaGlassMode(arena) || isArenax32GlassMode(arena)) {
-									item = new ItemStack(Material.STAINED_GLASS, 1, dc.getData());
+									item = new ItemStack(Material.STAINED_GLASS, 1, dc.getWoolData());
 								} else {
-									item = new ItemStack(Material.WOOL, 1, dc.getData());
+									item = new ItemStack(Material.WOOL, 1, dc.getWoolData());
 								}
 								ItemMeta m = item.getItemMeta();
 								m.setDisplayName(dyeToChat(dc) + "" + ChatColor.BOLD + dc.name());
@@ -1561,7 +1561,7 @@ public class Main extends JavaPlugin implements Listener {
 					// current = r.nextInt(colors.size());
 					current = ints.get(count);
 					if (current < 1) {
-						current = (int) colors.get(r.nextInt(colors.size())).getData();
+						current = (int) colors.get(r.nextInt(colors.size())).getWoolData();
 					}
 					count += 1;
 
@@ -1595,7 +1595,7 @@ public class Main extends JavaPlugin implements Listener {
 		int x = start.getBlockX() - 32;
 		int y = start.getBlockY();
 		int z = start.getBlockZ() - 32;
-		Byte data = colors.get(a_currentw.get(arena)).getData();
+		Byte data = colors.get(a_currentw.get(arena)).getWoolData();
 
 		for (int i = 0; i < 64; i++) {
 			for (int j = 0; j < 64; j++) {
