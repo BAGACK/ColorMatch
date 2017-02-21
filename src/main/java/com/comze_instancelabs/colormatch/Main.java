@@ -1,6 +1,5 @@
 package com.comze_instancelabs.colormatch;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,9 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.logging.Level;
-
-import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.economy.EconomyResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
@@ -62,7 +58,11 @@ import com.comze_instancelabs.colormatch.modes.ColorMatchx32Glass;
 import com.comze_instancelabs.minigamesapi.CommandStrings;
 import com.comze_instancelabs.minigamesapi.MinigamesAPI;
 import com.comze_instancelabs.minigamesapi.PluginConfigStrings;
+import com.comze_instancelabs.minigamesapi.util.ArenaScoreboard;
 import com.google.common.collect.Maps;
+
+import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.economy.EconomyResponse;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -1779,12 +1779,12 @@ public class Main extends JavaPlugin implements Listener {
 						objective.setDisplayName("§cC§3o§dl§5o§6r§1M§aa§2t§4c§eh!"); // <- ColorMatch
 
 						try {
-							objective.getScore(Bukkit.getOfflinePlayer(" §8-  ")).setScore(5);
-							objective.getScore(Bukkit.getOfflinePlayer("§aArena")).setScore(4);
-							objective.getScore(Bukkit.getOfflinePlayer("§d" + arena)).setScore(3);
-							objective.getScore(Bukkit.getOfflinePlayer(" §8- ")).setScore(2);
-							objective.getScore(Bukkit.getOfflinePlayer("§aPlayers Left")).setScore(1);
-							objective.getScore(Bukkit.getOfflinePlayer(Integer.toString(count - lostcount) + "/" + Integer.toString(count))).setScore(0);
+							ArenaScoreboard.get(objective, " §8-  ").setScore(5);
+							ArenaScoreboard.get(objective, "§aArena").setScore(4);
+							ArenaScoreboard.get(objective, "§d" + arena).setScore(3);
+							ArenaScoreboard.get(objective, " §8- ").setScore(2);
+							ArenaScoreboard.get(objective, "§aPlayers Left").setScore(1);
+							ArenaScoreboard.get(objective, Integer.toString(count - lostcount) + "/" + Integer.toString(count)).setScore(0);
 						} catch (Exception e) {
 							//
 						}
