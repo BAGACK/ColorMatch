@@ -1,4 +1,4 @@
-ColorMatch [![Build Status](http://www.minigameslib.de/build.php?app=ColorMatch&major=1)](http://www.minigameslib.de/buildref.php?app=ColorMatch&major=1)
+ColorMatch [![Build Status](http://www.minigameslib.de/build.png?app=ColorMatch&major=1)](http://www.minigameslib.de/buildref.php?app=ColorMatch&major=1)
 =======
 
 ColorMatch game for spigot-minecraft using [MinigamesAPI](https://github.com/MysticCity/MinigamesAPI).
