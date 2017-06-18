@@ -56,6 +56,7 @@ import com.comze_instancelabs.colormatch.modes.ColorMatchx32;
 import com.comze_instancelabs.colormatch.modes.ColorMatchx32Clay;
 import com.comze_instancelabs.colormatch.modes.ColorMatchx32Glass;
 import com.comze_instancelabs.minigamesapi.CommandStrings;
+import com.comze_instancelabs.minigamesapi.MinecraftVersionsType;
 import com.comze_instancelabs.minigamesapi.MinigamesAPI;
 import com.comze_instancelabs.minigamesapi.PluginConfigStrings;
 import com.comze_instancelabs.minigamesapi.util.ArenaScoreboard;
@@ -1298,7 +1299,14 @@ public class Main extends JavaPlugin implements Listener {
 			public void run() {
 				// clear hostile mobs on start:
 				for (Player p : arenap.keySet()) {
-					p.playSound(p.getLocation(), Sound.ENTITY_CAT_AMBIENT, 1, 0);
+					if (MinigamesAPI.SERVER_VERSION.isBelow(MinecraftVersionsType.V1_9))
+					{
+						p.playSound(p.getLocation(), Sound.valueOf("CAT_MEOW"), 1, 0);
+					}
+					else
+					{
+						p.playSound(p.getLocation(), Sound.ENTITY_CAT_AMBIENT, 1, 0);
+					}
 					if (arenap.get(p).equalsIgnoreCase(arena)) {
 						for (Entity t : p.getNearbyEntities(64, 64, 64)) {
 							if (t.getType() == EntityType.ZOMBIE || t.getType() == EntityType.SKELETON || t.getType() == EntityType.CREEPER || t.getType() == EntityType.CAVE_SPIDER || t.getType() == EntityType.SPIDER || t.getType() == EntityType.WITCH || t.getType() == EntityType.GIANT) {
